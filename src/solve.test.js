@@ -1,5 +1,5 @@
 const {
-  solver: solve,
+  solve,
   getSpots,
   isValidMove,
   setSudoku,
