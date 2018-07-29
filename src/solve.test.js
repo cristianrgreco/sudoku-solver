@@ -1,5 +1,5 @@
 const {
-  solver,
+  solver: solve,
   getSpots,
   isValidMove,
   setSudoku,
@@ -13,7 +13,7 @@ describe('solve', () => {
       [0, 0, 1]
     ];
 
-    const solution = solver(sudoku);
+    const solution = solve(sudoku);
 
     expect(solution).toEqual([
       [2, 1, 3],

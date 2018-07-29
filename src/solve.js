@@ -97,7 +97,7 @@ function setSudoku(sudoku, { x, y }, candidate) {
 }
 
 module.exports = {
-  solver: solve,
+  solve,
   getSpots,
   isValidMove,
   setSudoku
