@@ -18,7 +18,7 @@ function solver(sudoku, size = 3) {
     }
   }
 
-  return solve(sudoku, 0);
+  return solve(sudoku, 0, 1);
 }
 
 function getSpots(sudoku) {
@@ -45,7 +45,7 @@ function isValidMove(sudoku, size, { x, y }, candidate) {
   }
 
   function isValidVertically() {
-    const cells = sudoku.map((row, i) => sudoku[i][x]);
+    const cells = sudoku.map((row, y) => sudoku[y][x]);
     return !containsCandidate(cells, candidate);
   }
 
@@ -61,12 +61,12 @@ function isValidMove(sudoku, size, { x, y }, candidate) {
   }
 
   function getSubGroup(subGroupSize) {
-    const rowOffset = Math.floor(x / subGroupSize) * subGroupSize;
+    const offset = Math.floor(x / subGroupSize) * subGroupSize;
 
     const cells = [];
 
-    for (let y = rowOffset; y < rowOffset + subGroupSize; y++) {
-      for (let x = rowOffset; x < rowOffset + subGroupSize; x++) {
+    for (let y = offset; y < offset + subGroupSize; y++) {
+      for (let x = offset; x < offset + subGroupSize; x++) {
         cells.push(sudoku[y][x]);
       }
     }
