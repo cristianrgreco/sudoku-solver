@@ -1,9 +1,10 @@
 const EMPTY = 0;
 
-function solver(sudoku, size = 3) {
+function solve(sudoku, size = 3) {
   const spots = getSpots(sudoku);
+  return backtrack(sudoku, 0, 1);
 
-  function solve(sudoku, spotIndex, candidate) {
+  function backtrack(sudoku, spotIndex, candidate) {
     if (spotIndex === spots.length) {
       return sudoku;
     }
@@ -12,13 +13,15 @@ function solver(sudoku, size = 3) {
 
     if (isValidMove(sudoku, size, spot, candidate)) {
       const nextSudoku = setSudoku(sudoku, spot, candidate);
-      return solve(nextSudoku, spotIndex + 1, 1);
-    } else if (candidate < size) {
-      return solve(sudoku, spotIndex, candidate + 1);
+      const solution = backtrack(nextSudoku, spotIndex + 1, 1);
+
+      if (solution) {
+        return solution;
+      } else {
+        return backtrack(sudoku, spotIndex, candidate + 1);
+      }
     }
   }
-
-  return solve(sudoku, 0, 1);
 }
 
 function getSpots(sudoku) {
@@ -92,7 +95,7 @@ function setSudoku(sudoku, { x, y }, candidate) {
 }
 
 module.exports = {
-  solver,
+  solver: solve,
   getSpots,
   isValidMove,
   setSudoku

@@ -3,9 +3,9 @@ const {
   getSpots,
   isValidMove,
   setSudoku,
-} = require('./solver');
+} = require('./solve');
 
-describe('solver', () => {
+describe('solve', () => {
   it.skip('should solve a 3x3 sudoku', () => {
     const sudoku = [
       [2, 0, 3],
