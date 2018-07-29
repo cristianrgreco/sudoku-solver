@@ -1,7 +1,9 @@
 const EMPTY = 0;
 
-function solve(sudoku, size = 3) {
+function solve(sudoku) {
+  const size = sudoku.length;
   const spots = getSpots(sudoku);
+
   return backtrack(sudoku, 0, 1);
 
   function backtrack(sudoku, spotIndex, candidate) {
