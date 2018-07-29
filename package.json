@@ -1,0 +1,21 @@
+{
+  "name": "sudoku-solver",
+  "version": "1.0.0",
+  "description": "Solves Sudoku puzzles",
+  "main": "src/index.js",
+  "keywords": ["sudoku"],
+  "author": "Cristian Greco",
+  "license": "ISC",
+  "scripts": {
+    "start": "node src",
+    "test": "jest",
+    "precommit": "npm test"
+  },
+  "devDependencies": {
+    "husky": "^0.14.3",
+    "jest": "^23.4.2"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  }
+}
