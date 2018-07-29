@@ -122,6 +122,7 @@ describe('solve', () => {
       [1, 3, 0],
       [3, 0, 1]
     ]);
-    expect(sudoku2).not.toBe(sudoku);
+    expect(sudoku1).not.toBe(sudoku);
+    expect(sudoku2).not.toBe(sudoku1);
   });
 });
