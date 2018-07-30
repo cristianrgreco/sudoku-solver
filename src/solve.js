@@ -13,16 +13,17 @@ function solve(sudoku) {
 
     const spot = spots[spotIndex];
 
-    if (isValidMove(sudoku, size, spot, candidate)) {
-      const nextSudoku = setSudoku(sudoku, spot, candidate);
-      const solution = backtrack(nextSudoku, spotIndex + 1, 1);
-
-      if (solution) {
-        return solution;
-      } else {
-        return backtrack(sudoku, spotIndex, candidate + 1);
+    for (let nextCandidate = candidate; nextCandidate <= size; nextCandidate++) {
+      if (isValidMove(sudoku, size, spot, nextCandidate)) {
+        const nextSudoku = setSudoku(sudoku, spot, nextCandidate);
+        const solution = backtrack(nextSudoku, spotIndex + 1, 1)
+        if (solution) {
+          return solution;
+        }
       }
     }
+
+    return false;
   }
 }
 

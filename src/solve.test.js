@@ -6,7 +6,7 @@ const {
 } = require('./solve');
 
 describe('solve', () => {
-  it.skip('should solve a 3x3 sudoku', () => {
+  it('should solve a 3x3 sudoku', () => {
     const sudoku = [
       [2, 0, 3],
       [1, 0, 0],

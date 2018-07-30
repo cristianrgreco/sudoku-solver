@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Solves Sudoku puzzles",
   "main": "src/index.js",
-  "keywords": ["sudoku"],
+  "keywords": [
+    "sudoku"
+  ],
   "author": "Cristian Greco",
   "license": "ISC",
   "scripts": {
