@@ -8,7 +8,7 @@ Input is a 2-dimensional array of any size, with empty spaces represented as `0`
 
 Output is a 2-dimensional array containing the solution, or `false` if one was not found.
 
-```
+```javascript
 const solve = require('.');
 
 solve([
