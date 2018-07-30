@@ -45,9 +45,9 @@ function getSpots(sudoku) {
 }
 
 function isValidMove(sudoku, size, { x, y }, candidate) {
-  return isValidHorizontal() && isValidVertically() && isValidSubGroup();
+  return isValidHorizontally() && isValidVertically() && isValidSubGroup();
 
-  function isValidHorizontal() {
+  function isValidHorizontally() {
     const cells = sudoku[y];
     return !containsCandidate(cells, candidate);
   }
