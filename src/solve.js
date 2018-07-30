@@ -64,8 +64,22 @@ function isValidMove(sudoku, size, { x, y }, candidate) {
       return true;
     }
 
-    const cells = getSubGroup(sudoku, { x, y }, subGroupSize);
+    const cells = getSubGroup(subGroupSize);
     return !containsCandidate(cells, candidate);
+  }
+
+  function getSubGroup(subGroupSize) {
+    const offset = Math.floor(x / subGroupSize) * subGroupSize;
+
+    const cells = [];
+
+    for (let y = offset; y < offset + subGroupSize; y++) {
+      for (let x = offset; x < offset + subGroupSize; x++) {
+        cells.push(sudoku[y][x]);
+      }
+    }
+
+    return cells;
   }
 
   function containsCandidate(cells, candidate) {
@@ -83,24 +97,9 @@ function setSudoku(sudoku, { x, y }, candidate) {
   });
 }
 
-function getSubGroup(sudoku, spot, subGroupSize) {
-  const offset = Math.floor(spot.x / subGroupSize) * subGroupSize;
-
-  const cells = [];
-
-  for (let y = offset; y < offset + subGroupSize; y++) {
-    for (let x = offset; x < offset + subGroupSize; x++) {
-      cells.push(sudoku[y][x]);
-    }
-  }
-
-  return cells;
-}
-
 module.exports = {
   solve,
   getSpots,
   isValidMove,
-  setSudoku,
-  getSubGroup
+  setSudoku
 };
