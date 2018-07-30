@@ -16,7 +16,8 @@ function solve(sudoku) {
     for (let candidate = 1; candidate <= size; candidate++) {
       if (isValidMove(sudoku, size, spot, candidate)) {
         const nextSudoku = setSudoku(sudoku, spot, candidate);
-        const solution = backtrack(nextSudoku, spotIndex + 1)
+        const solution = backtrack(nextSudoku, spotIndex + 1);
+
         if (solution) {
           return solution;
         }
@@ -35,6 +36,7 @@ function getSpots(sudoku) {
 
     for (let x = 0; x < row.length; x++) {
       const cell = row[x];
+
       if (cell === EMPTY) {
         spots.push({ x, y });
       }
