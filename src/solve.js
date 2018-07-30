@@ -69,12 +69,13 @@ function isValidMove(sudoku, size, { x, y }, candidate) {
   }
 
   function getSubGroup(subGroupSize) {
-    const offset = Math.floor(x / subGroupSize) * subGroupSize;
+    const xOffset = Math.floor(x / subGroupSize) * subGroupSize;
+    const yOffset = Math.floor(y / subGroupSize) * subGroupSize;
 
     const cells = [];
 
-    for (let y = offset; y < offset + subGroupSize; y++) {
-      for (let x = offset; x < offset + subGroupSize; x++) {
+    for (let y = yOffset; y < yOffset + subGroupSize; y++) {
+      for (let x = xOffset; x < xOffset + subGroupSize; x++) {
         cells.push(sudoku[y][x]);
       }
     }
@@ -95,6 +96,33 @@ function setSudoku(sudoku, { x, y }, candidate) {
       return row;
     }
   });
+}
+
+function toString(sudoku, size) {
+  const subGroupSize = Math.sqrt(size);
+
+  let output = '';
+
+  for (let y = 0; y < sudoku.length; y++) {
+    const row = sudoku[y];
+
+    for (let x = 0; x < row.length; x++) {
+      output += row[x] + ' ';
+
+      if ((x + 1) % subGroupSize === 0 && x < size - 1) {
+        output += '| ';
+      }
+    }
+
+    output += '\n';
+
+    if ((y + 1) % subGroupSize === 0 && y < size - 1) {
+      output += '-'.repeat(subGroupSize * 7);
+      output += '\n';
+    }
+  }
+
+  return output;
 }
 
 module.exports = {
