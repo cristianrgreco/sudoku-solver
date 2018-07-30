@@ -98,33 +98,6 @@ function setSudoku(sudoku, { x, y }, candidate) {
   });
 }
 
-function toString(sudoku, size) {
-  const subGroupSize = Math.sqrt(size);
-
-  let output = '';
-
-  for (let y = 0; y < sudoku.length; y++) {
-    const row = sudoku[y];
-
-    for (let x = 0; x < row.length; x++) {
-      output += row[x] + ' ';
-
-      if ((x + 1) % subGroupSize === 0 && x < size - 1) {
-        output += '| ';
-      }
-    }
-
-    output += '\n';
-
-    if ((y + 1) % subGroupSize === 0 && y < size - 1) {
-      output += '-'.repeat(subGroupSize * 7);
-      output += '\n';
-    }
-  }
-
-  return output;
-}
-
 module.exports = {
   solve,
   getSpots,
