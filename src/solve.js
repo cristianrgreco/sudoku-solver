@@ -4,19 +4,19 @@ function solve(sudoku) {
   const size = sudoku.length;
   const spots = getSpots(sudoku);
 
-  return backtrack(sudoku, 0, 1);
+  return backtrack(sudoku, 0);
 
-  function backtrack(sudoku, spotIndex, candidate) {
+  function backtrack(sudoku, spotIndex) {
     if (spotIndex === spots.length) {
       return sudoku;
     }
 
     const spot = spots[spotIndex];
 
-    for (let nextCandidate = candidate; nextCandidate <= size; nextCandidate++) {
-      if (isValidMove(sudoku, size, spot, nextCandidate)) {
-        const nextSudoku = setSudoku(sudoku, spot, nextCandidate);
-        const solution = backtrack(nextSudoku, spotIndex + 1, 1)
+    for (let candidate = 1; candidate <= size; candidate++) {
+      if (isValidMove(sudoku, size, spot, candidate)) {
+        const nextSudoku = setSudoku(sudoku, spot, candidate);
+        const solution = backtrack(nextSudoku, spotIndex + 1)
         if (solution) {
           return solution;
         }
@@ -64,22 +64,8 @@ function isValidMove(sudoku, size, { x, y }, candidate) {
       return true;
     }
 
-    const cells = getSubGroup(subGroupSize);
+    const cells = getSubGroup(sudoku, { x, y }, subGroupSize);
     return !containsCandidate(cells, candidate);
-  }
-
-  function getSubGroup(subGroupSize) {
-    const offset = Math.floor(x / subGroupSize) * subGroupSize;
-
-    const cells = [];
-
-    for (let y = offset; y < offset + subGroupSize; y++) {
-      for (let x = offset; x < offset + subGroupSize; x++) {
-        cells.push(sudoku[y][x]);
-      }
-    }
-
-    return cells;
   }
 
   function containsCandidate(cells, candidate) {
@@ -97,9 +83,24 @@ function setSudoku(sudoku, { x, y }, candidate) {
   });
 }
 
+function getSubGroup(sudoku, spot, subGroupSize) {
+  const offset = Math.floor(spot.x / subGroupSize) * subGroupSize;
+
+  const cells = [];
+
+  for (let y = offset; y < offset + subGroupSize; y++) {
+    for (let x = offset; x < offset + subGroupSize; x++) {
+      cells.push(sudoku[y][x]);
+    }
+  }
+
+  return cells;
+}
+
 module.exports = {
   solve,
   getSpots,
   isValidMove,
-  setSudoku
+  setSudoku,
+  getSubGroup
 };
